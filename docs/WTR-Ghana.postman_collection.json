@@ -1,0 +1,5872 @@
+{
+  "info": {
+    "name": "WTR Ghana API",
+    "description": "Every endpoint of the WTR Ghana Community Water Management Platform. Set {{base_url}} and run 'Auth / Login' first \u2014 the test script stores the JWT in {{access_token}}.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{access_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000"
+    },
+    {
+      "key": "access_token",
+      "value": ""
+    },
+    {
+      "key": "refresh_token",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "POST /api/auth/change-password/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/change-password/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "change-password"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/auth/login/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/login/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            },
+            "description": "Takes a set of user credentials and returns an access and refresh JSON web\ntoken pair to prove the authentication of those credentials.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin.abokobi@wtr.gh\",\n  \"password\": \"Demo1234!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const d = pm.response.json();",
+                  "pm.collectionVariables.set('access_token', d.access);",
+                  "pm.collectionVariables.set('refresh_token', d.refresh);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET /api/auth/me/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/me/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "me"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PATCH /api/auth/me/",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/me/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "me"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/auth/refresh/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/refresh/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "refresh"
+              ]
+            },
+            "description": "Takes a refresh type JSON web token and returns an access type JSON web\ntoken if the refresh token is valid.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refresh\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/auth/roles/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/roles/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "roles"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /api/auth/users/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/users/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "users"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/auth/users/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/users/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "users"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"\",\n  \"full_name\": \"\",\n  \"phone\": \"\",\n  \"role\": null,\n  \"community\": 0,\n  \"is_active\": false,\n  \"password\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/auth/users/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/users/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "users",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PUT /api/auth/users/{id}/",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/users/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "users",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"\",\n  \"full_name\": \"\",\n  \"phone\": \"\",\n  \"role\": null,\n  \"community\": 0,\n  \"is_active\": false,\n  \"password\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /api/auth/users/{id}/",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/users/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "users",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"\",\n  \"full_name\": \"\",\n  \"phone\": \"\",\n  \"role\": null,\n  \"community\": 0,\n  \"is_active\": false,\n  \"password\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/auth/users/{id}/",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/users/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "users",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/auth/users/{id}/reset_password/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/users/:id/reset_password/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "users",
+                ":id",
+                "reset_password"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"\",\n  \"full_name\": \"\",\n  \"phone\": \"\",\n  \"role\": null,\n  \"community\": 0,\n  \"is_active\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Approvals",
+      "item": [
+        {
+          "name": "GET /api/approvals/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/approvals/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "approvals"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/approvals/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/approvals/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "approvals"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_type\": null,\n  \"target_model\": \"\",\n  \"target_id\": \"\",\n  \"target_label\": \"\",\n  \"payload\": null,\n  \"reason\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/approvals/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/approvals/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "approvals",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /api/approvals/{id}/",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/approvals/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "approvals",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/approvals/{id}/approve/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/approvals/:id/approve/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "approvals",
+                ":id",
+                "approve"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_type\": null,\n  \"target_model\": \"\",\n  \"target_id\": \"\",\n  \"target_label\": \"\",\n  \"payload\": null,\n  \"reason\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /api/approvals/{id}/reject/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/approvals/:id/reject/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "approvals",
+                ":id",
+                "reject"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_type\": null,\n  \"target_model\": \"\",\n  \"target_id\": \"\",\n  \"target_label\": \"\",\n  \"payload\": null,\n  \"reason\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Assets",
+      "item": [
+        {
+          "name": "GET /api/assets/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/assets/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "assets"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/assets/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/assets/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "assets"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"asset_type\": null,\n  \"status\": null,\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"capacity\": \"\",\n  \"manufacturer\": \"\",\n  \"serial_number\": \"\",\n  \"installed_on\": \"\",\n  \"warranty_expiry\": \"\",\n  \"maintenance_interval_days\": 0,\n  \"last_maintenance\": \"\",\n  \"next_maintenance\": \"\",\n  \"notes\": \"\",\n  \"parent\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/assets/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/assets/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "assets",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PUT /api/assets/{id}/",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/assets/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "assets",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"asset_type\": null,\n  \"status\": null,\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"capacity\": \"\",\n  \"manufacturer\": \"\",\n  \"serial_number\": \"\",\n  \"installed_on\": \"\",\n  \"warranty_expiry\": \"\",\n  \"maintenance_interval_days\": 0,\n  \"last_maintenance\": \"\",\n  \"next_maintenance\": \"\",\n  \"notes\": \"\",\n  \"parent\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /api/assets/{id}/",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/assets/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "assets",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"asset_type\": null,\n  \"status\": null,\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"capacity\": \"\",\n  \"manufacturer\": \"\",\n  \"serial_number\": \"\",\n  \"installed_on\": \"\",\n  \"warranty_expiry\": \"\",\n  \"maintenance_interval_days\": 0,\n  \"last_maintenance\": \"\",\n  \"next_maintenance\": \"\",\n  \"notes\": \"\",\n  \"parent\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/assets/{id}/",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/assets/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "assets",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /api/assets/due/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/assets/due/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "assets",
+                "due"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /api/assets/network/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/assets/network/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "assets",
+                "network"
+              ]
+            },
+            "description": "Tree of the water network (source \u2192 treatment \u2192 reservoir \u2192 pipeline \u2192 \u2026) for the GIS / network view."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Audit Logs",
+      "item": [
+        {
+          "name": "GET /api/audit-logs/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/audit-logs/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "audit-logs"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /api/audit-logs/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/audit-logs/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "audit-logs",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Billing Periods",
+      "item": [
+        {
+          "name": "GET /api/billing-periods/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/billing-periods/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "billing-periods"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/billing-periods/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/billing-periods/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "billing-periods"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"frequency\": null,\n  \"start_date\": \"\",\n  \"end_date\": \"\",\n  \"due_date\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/billing-periods/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/billing-periods/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "billing-periods",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PUT /api/billing-periods/{id}/",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/billing-periods/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "billing-periods",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"frequency\": null,\n  \"start_date\": \"\",\n  \"end_date\": \"\",\n  \"due_date\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /api/billing-periods/{id}/",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/billing-periods/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "billing-periods",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"frequency\": null,\n  \"start_date\": \"\",\n  \"end_date\": \"\",\n  \"due_date\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/billing-periods/{id}/",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/billing-periods/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "billing-periods",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/billing-periods/{id}/close/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/billing-periods/:id/close/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "billing-periods",
+                ":id",
+                "close"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"frequency\": null,\n  \"start_date\": \"\",\n  \"end_date\": \"\",\n  \"due_date\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /api/billing-periods/{id}/generate/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/billing-periods/:id/generate/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "billing-periods",
+                ":id",
+                "generate"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"frequency\": null,\n  \"start_date\": \"\",\n  \"end_date\": \"\",\n  \"due_date\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bills",
+      "item": [
+        {
+          "name": "GET /api/bills/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/bills/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "bills"
+              ]
+            },
+            "description": "Bills are immutable financial records. They are created by the billing engine and changed only via adjustments."
+          }
+        },
+        {
+          "name": "GET /api/bills/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/bills/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "bills",
+                ":id"
+              ]
+            },
+            "description": "Bills are immutable financial records. They are created by the billing engine and changed only via adjustments."
+          }
+        },
+        {
+          "name": "POST /api/bills/{id}/adjust/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/bills/:id/adjust/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "bills",
+                ":id",
+                "adjust"
+              ]
+            },
+            "description": "Direct adjustment for admins. Officers must go through the approval workflow (BILL_ADJUSTMENT request).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"notes\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/bills/{id}/adjustments/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/bills/:id/adjustments/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "bills",
+                ":id",
+                "adjustments"
+              ]
+            },
+            "description": "Bills are immutable financial records. They are created by the billing engine and changed only via adjustments."
+          }
+        },
+        {
+          "name": "POST /api/bills/{id}/cancel/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/bills/:id/cancel/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "bills",
+                ":id",
+                "cancel"
+              ]
+            },
+            "description": "Bills are immutable financial records. They are created by the billing engine and changed only via adjustments.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"notes\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/bills/aging/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/bills/aging/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "bills",
+                "aging"
+              ]
+            },
+            "description": "Bills are immutable financial records. They are created by the billing engine and changed only via adjustments."
+          }
+        },
+        {
+          "name": "GET /api/bills/dunning_history/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/bills/dunning_history/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "bills",
+                "dunning_history"
+              ]
+            },
+            "description": "Bills are immutable financial records. They are created by the billing engine and changed only via adjustments."
+          }
+        },
+        {
+          "name": "POST /api/bills/generate_single/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/bills/generate_single/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "bills",
+                "generate_single"
+              ]
+            },
+            "description": "Bills are immutable financial records. They are created by the billing engine and changed only via adjustments.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"notes\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /api/bills/refresh_overdue/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/bills/refresh_overdue/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "bills",
+                "refresh_overdue"
+              ]
+            },
+            "description": "Bills are immutable financial records. They are created by the billing engine and changed only via adjustments.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"notes\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /api/bills/run_dunning/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/bills/run_dunning/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "bills",
+                "run_dunning"
+              ]
+            },
+            "description": "Bills are immutable financial records. They are created by the billing engine and changed only via adjustments.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"notes\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Communities",
+      "item": [
+        {
+          "name": "GET /api/communities/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/communities/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "communities"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/communities/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/communities/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "communities"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"region\": \"\",\n  \"district\": \"\",\n  \"municipality\": \"\",\n  \"town\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"boundary\": null,\n  \"contact_name\": \"\",\n  \"contact_phone\": \"\",\n  \"contact_email\": null,\n  \"water_source\": \"\",\n  \"water_system_type\": null,\n  \"households_count\": 0,\n  \"meters_count\": 0,\n  \"service_status\": null,\n  \"notes\": \"\",\n  \"admin\": 0,\n  \"subscription_plan\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/communities/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/communities/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "communities",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PUT /api/communities/{id}/",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/communities/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "communities",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"region\": \"\",\n  \"district\": \"\",\n  \"municipality\": \"\",\n  \"town\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"boundary\": null,\n  \"contact_name\": \"\",\n  \"contact_phone\": \"\",\n  \"contact_email\": null,\n  \"water_source\": \"\",\n  \"water_system_type\": null,\n  \"households_count\": 0,\n  \"meters_count\": 0,\n  \"service_status\": null,\n  \"notes\": \"\",\n  \"admin\": 0,\n  \"subscription_plan\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /api/communities/{id}/",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/communities/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "communities",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"region\": \"\",\n  \"district\": \"\",\n  \"municipality\": \"\",\n  \"town\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"boundary\": null,\n  \"contact_name\": \"\",\n  \"contact_phone\": \"\",\n  \"contact_email\": null,\n  \"water_source\": \"\",\n  \"water_system_type\": null,\n  \"households_count\": 0,\n  \"meters_count\": 0,\n  \"service_status\": null,\n  \"notes\": \"\",\n  \"admin\": 0,\n  \"subscription_plan\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/communities/{id}/",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/communities/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "communities",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/communities/{id}/activate/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/communities/:id/activate/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "communities",
+                ":id",
+                "activate"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"region\": \"\",\n  \"district\": \"\",\n  \"municipality\": \"\",\n  \"town\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"boundary\": null,\n  \"contact_name\": \"\",\n  \"contact_phone\": \"\",\n  \"contact_email\": null,\n  \"water_source\": \"\",\n  \"water_system_type\": null,\n  \"households_count\": 0,\n  \"meters_count\": 0,\n  \"service_status\": null,\n  \"notes\": \"\",\n  \"admin\": 0,\n  \"subscription_plan\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /api/communities/{id}/approve/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/communities/:id/approve/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "communities",
+                ":id",
+                "approve"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"region\": \"\",\n  \"district\": \"\",\n  \"municipality\": \"\",\n  \"town\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"boundary\": null,\n  \"contact_name\": \"\",\n  \"contact_phone\": \"\",\n  \"contact_email\": null,\n  \"water_source\": \"\",\n  \"water_system_type\": null,\n  \"households_count\": 0,\n  \"meters_count\": 0,\n  \"service_status\": null,\n  \"notes\": \"\",\n  \"admin\": 0,\n  \"subscription_plan\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/communities/{id}/settings/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/communities/:id/settings/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "communities",
+                ":id",
+                "settings"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PATCH /api/communities/{id}/settings/",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/communities/:id/settings/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "communities",
+                ":id",
+                "settings"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"region\": \"\",\n  \"district\": \"\",\n  \"municipality\": \"\",\n  \"town\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"boundary\": null,\n  \"contact_name\": \"\",\n  \"contact_phone\": \"\",\n  \"contact_email\": null,\n  \"water_source\": \"\",\n  \"water_system_type\": null,\n  \"households_count\": 0,\n  \"meters_count\": 0,\n  \"service_status\": null,\n  \"notes\": \"\",\n  \"admin\": 0,\n  \"subscription_plan\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /api/communities/{id}/suspend/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/communities/:id/suspend/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "communities",
+                ":id",
+                "suspend"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"region\": \"\",\n  \"district\": \"\",\n  \"municipality\": \"\",\n  \"town\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"boundary\": null,\n  \"contact_name\": \"\",\n  \"contact_phone\": \"\",\n  \"contact_email\": null,\n  \"water_source\": \"\",\n  \"water_system_type\": null,\n  \"households_count\": 0,\n  \"meters_count\": 0,\n  \"service_status\": null,\n  \"notes\": \"\",\n  \"admin\": 0,\n  \"subscription_plan\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Customers",
+      "item": [
+        {
+          "name": "GET /api/customers/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/customers/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "customers"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/customers/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/customers/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "customers"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"household_name\": \"\",\n  \"contact_person\": \"\",\n  \"phone\": \"\",\n  \"alternative_phone\": \"\",\n  \"email\": null,\n  \"address\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"category\": null,\n  \"occupants\": 0,\n  \"connection_date\": \"\",\n  \"account_status\": null,\n  \"notes\": \"\",\n  \"property\": 0,\n  \"tariff_plan\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/customers/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/customers/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "customers",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PUT /api/customers/{id}/",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/customers/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "customers",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"household_name\": \"\",\n  \"contact_person\": \"\",\n  \"phone\": \"\",\n  \"alternative_phone\": \"\",\n  \"email\": null,\n  \"address\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"category\": null,\n  \"occupants\": 0,\n  \"connection_date\": \"\",\n  \"account_status\": null,\n  \"notes\": \"\",\n  \"property\": 0,\n  \"tariff_plan\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /api/customers/{id}/",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/customers/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "customers",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"household_name\": \"\",\n  \"contact_person\": \"\",\n  \"phone\": \"\",\n  \"alternative_phone\": \"\",\n  \"email\": null,\n  \"address\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"category\": null,\n  \"occupants\": 0,\n  \"connection_date\": \"\",\n  \"account_status\": null,\n  \"notes\": \"\",\n  \"property\": 0,\n  \"tariff_plan\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/customers/{id}/",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/customers/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "customers",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/customers/{id}/create_portal_login/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/customers/:id/create_portal_login/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "customers",
+                ":id",
+                "create_portal_login"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"household_name\": \"\",\n  \"contact_person\": \"\",\n  \"phone\": \"\",\n  \"alternative_phone\": \"\",\n  \"email\": null,\n  \"address\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"category\": null,\n  \"occupants\": 0,\n  \"connection_date\": \"\",\n  \"account_status\": null,\n  \"notes\": \"\",\n  \"property\": 0,\n  \"tariff_plan\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/customers/{id}/statement/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/customers/:id/statement/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "customers",
+                ":id",
+                "statement"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /api/customers/{id}/summary/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/customers/:id/summary/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "customers",
+                ":id",
+                "summary"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dashboards & Analytics",
+      "item": [
+        {
+          "name": "GET /api/analytics/benchmark/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/analytics/benchmark/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "analytics",
+                "benchmark"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/analytics/intelligence/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/analytics/intelligence/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "analytics",
+                "intelligence"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /api/analytics/revenue/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/analytics/revenue/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "analytics",
+                "revenue"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /api/analytics/score/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/analytics/score/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "analytics",
+                "score"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /api/dashboard/activity/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/dashboard/activity/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "dashboard",
+                "activity"
+              ]
+            },
+            "description": "Recent audit events, humanised. ?mine=1 restricts to the caller's own actions."
+          }
+        },
+        {
+          "name": "GET /api/dashboard/auditor/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/dashboard/auditor/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "dashboard",
+                "auditor"
+              ]
+            },
+            "description": "Auditor: activity volumes, approvals, sensitive financial actions. Community optional for platform roles."
+          }
+        },
+        {
+          "name": "GET /api/dashboard/community/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/dashboard/community/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "dashboard",
+                "community"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /api/dashboard/customer/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/dashboard/customer/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "dashboard",
+                "customer"
+              ]
+            },
+            "description": "Everything the household dashboard needs in one call."
+          }
+        },
+        {
+          "name": "GET /api/dashboard/finance/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/dashboard/finance/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "dashboard",
+                "finance"
+              ]
+            },
+            "description": "Community Finance Officer / Platform Finance Admin: revenue, collections, debt, approvals."
+          }
+        },
+        {
+          "name": "GET /api/dashboard/meter-reader/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/dashboard/meter-reader/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "dashboard",
+                "meter-reader"
+              ]
+            },
+            "description": "Meter reader: own routes, progress, recent readings. Always scoped to the signed-in reader."
+          }
+        },
+        {
+          "name": "GET /api/dashboard/operations/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/dashboard/operations/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "dashboard",
+                "operations"
+              ]
+            },
+            "description": "Community Water Manager / Platform Operations Admin: supply, meters, readings, infrastructure, quality."
+          }
+        },
+        {
+          "name": "GET /api/dashboard/platform/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/dashboard/platform/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "dashboard",
+                "platform"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /api/dashboard/support/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/dashboard/support/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "dashboard",
+                "support"
+              ]
+            },
+            "description": "Customer support: ticket queue, SLA, satisfaction, delivery health."
+          }
+        },
+        {
+          "name": "GET /api/dashboard/technician/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/dashboard/technician/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "dashboard",
+                "technician"
+              ]
+            },
+            "description": "Technician: own tickets, maintenance schedule, outages, faulty meters."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Documents",
+      "item": [
+        {
+          "name": "GET /api/documents/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/documents/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "documents"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/documents/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/documents/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "documents"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"\",\n  \"category\": null,\n  \"file\": \"\",\n  \"external_url\": null,\n  \"description\": \"\",\n  \"is_public_to_customer\": false,\n  \"customer\": 0,\n  \"asset\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/documents/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/documents/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "documents",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PUT /api/documents/{id}/",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/documents/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "documents",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"\",\n  \"category\": null,\n  \"file\": \"\",\n  \"external_url\": null,\n  \"description\": \"\",\n  \"is_public_to_customer\": false,\n  \"customer\": 0,\n  \"asset\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /api/documents/{id}/",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/documents/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "documents",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"\",\n  \"category\": null,\n  \"file\": \"\",\n  \"external_url\": null,\n  \"description\": \"\",\n  \"is_public_to_customer\": false,\n  \"customer\": 0,\n  \"asset\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/documents/{id}/",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/documents/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "documents",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Emergencies",
+      "item": [
+        {
+          "name": "GET /api/emergencies/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/emergencies/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "emergencies"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/emergencies/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/emergencies/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "emergencies"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"emergency_type\": null,\n  \"severity\": null,\n  \"title\": \"\",\n  \"description\": \"\",\n  \"status\": null,\n  \"response_notes\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/emergencies/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/emergencies/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "emergencies",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PUT /api/emergencies/{id}/",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/emergencies/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "emergencies",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"emergency_type\": null,\n  \"severity\": null,\n  \"title\": \"\",\n  \"description\": \"\",\n  \"status\": null,\n  \"response_notes\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /api/emergencies/{id}/",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/emergencies/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "emergencies",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"emergency_type\": null,\n  \"severity\": null,\n  \"title\": \"\",\n  \"description\": \"\",\n  \"status\": null,\n  \"response_notes\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/emergencies/{id}/",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/emergencies/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "emergencies",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/emergencies/{id}/resolve/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/emergencies/:id/resolve/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "emergencies",
+                ":id",
+                "resolve"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"emergency_type\": null,\n  \"severity\": null,\n  \"title\": \"\",\n  \"description\": \"\",\n  \"status\": null,\n  \"response_notes\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Ledger",
+      "item": [
+        {
+          "name": "GET /api/ledger/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/ledger/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "ledger"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /api/ledger/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/ledger/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "ledger",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Maintenance",
+      "item": [
+        {
+          "name": "GET /api/maintenance/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/maintenance/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "maintenance"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/maintenance/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/maintenance/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "maintenance"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"maintenance_type\": null,\n  \"performed_on\": \"\",\n  \"technician_name\": \"\",\n  \"description\": \"\",\n  \"cost\": \"\",\n  \"parts_used\": \"\",\n  \"downtime_hours\": \"\",\n  \"was_failure\": false,\n  \"failure_cause\": \"\",\n  \"asset\": 0,\n  \"technician\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/maintenance/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/maintenance/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "maintenance",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PUT /api/maintenance/{id}/",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/maintenance/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "maintenance",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"maintenance_type\": null,\n  \"performed_on\": \"\",\n  \"technician_name\": \"\",\n  \"description\": \"\",\n  \"cost\": \"\",\n  \"parts_used\": \"\",\n  \"downtime_hours\": \"\",\n  \"was_failure\": false,\n  \"failure_cause\": \"\",\n  \"asset\": 0,\n  \"technician\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /api/maintenance/{id}/",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/maintenance/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "maintenance",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"maintenance_type\": null,\n  \"performed_on\": \"\",\n  \"technician_name\": \"\",\n  \"description\": \"\",\n  \"cost\": \"\",\n  \"parts_used\": \"\",\n  \"downtime_hours\": \"\",\n  \"was_failure\": false,\n  \"failure_cause\": \"\",\n  \"asset\": 0,\n  \"technician\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/maintenance/{id}/",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/maintenance/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "maintenance",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Meter Replacements",
+      "item": [
+        {
+          "name": "GET /api/meter-replacements/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/meter-replacements/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "meter-replacements"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /api/meter-replacements/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/meter-replacements/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "meter-replacements",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Meters",
+      "item": [
+        {
+          "name": "GET /api/meters/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/meters/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "meters"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/meters/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/meters/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "meters"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"serial_number\": \"\",\n  \"meter_type\": \"\",\n  \"meter_size\": \"\",\n  \"manufacturer\": \"\",\n  \"installation_date\": \"\",\n  \"installation_location\": \"\",\n  \"initial_reading\": \"\",\n  \"status\": null,\n  \"condition\": null,\n  \"last_inspection\": \"\",\n  \"last_maintenance\": \"\",\n  \"is_smart\": false,\n  \"iot_device_id\": \"\",\n  \"notes\": \"\",\n  \"customer\": 0,\n  \"property\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/meters/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/meters/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "meters",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PUT /api/meters/{id}/",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/meters/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "meters",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"serial_number\": \"\",\n  \"meter_type\": \"\",\n  \"meter_size\": \"\",\n  \"manufacturer\": \"\",\n  \"installation_date\": \"\",\n  \"installation_location\": \"\",\n  \"initial_reading\": \"\",\n  \"status\": null,\n  \"condition\": null,\n  \"last_inspection\": \"\",\n  \"last_maintenance\": \"\",\n  \"is_smart\": false,\n  \"iot_device_id\": \"\",\n  \"notes\": \"\",\n  \"customer\": 0,\n  \"property\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /api/meters/{id}/",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/meters/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "meters",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"serial_number\": \"\",\n  \"meter_type\": \"\",\n  \"meter_size\": \"\",\n  \"manufacturer\": \"\",\n  \"installation_date\": \"\",\n  \"installation_location\": \"\",\n  \"initial_reading\": \"\",\n  \"status\": null,\n  \"condition\": null,\n  \"last_inspection\": \"\",\n  \"last_maintenance\": \"\",\n  \"is_smart\": false,\n  \"iot_device_id\": \"\",\n  \"notes\": \"\",\n  \"customer\": 0,\n  \"property\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/meters/{id}/",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/meters/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "meters",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /api/meters/{id}/history/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/meters/:id/history/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "meters",
+                ":id",
+                "history"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/meters/{id}/replace/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/meters/:id/replace/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "meters",
+                ":id",
+                "replace"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"serial_number\": \"\",\n  \"meter_type\": \"\",\n  \"meter_size\": \"\",\n  \"manufacturer\": \"\",\n  \"installation_date\": \"\",\n  \"installation_location\": \"\",\n  \"initial_reading\": \"\",\n  \"status\": null,\n  \"condition\": null,\n  \"last_inspection\": \"\",\n  \"last_maintenance\": \"\",\n  \"is_smart\": false,\n  \"iot_device_id\": \"\",\n  \"notes\": \"\",\n  \"customer\": 0,\n  \"property\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notifications",
+      "item": [
+        {
+          "name": "GET /api/notifications/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/notifications/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "notifications"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /api/notifications/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/notifications/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "notifications",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/notifications/broadcast/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/notifications/broadcast/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "notifications",
+                "broadcast"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event\": \"\",\n  \"channel\": null,\n  \"recipient\": \"\",\n  \"title\": \"\",\n  \"message\": \"\",\n  \"status\": null,\n  \"sent_at\": \"\",\n  \"error\": \"\",\n  \"is_read\": false,\n  \"metadata\": null,\n  \"community\": 0,\n  \"customer\": 0,\n  \"user\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /api/notifications/mark_read/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/notifications/mark_read/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "notifications",
+                "mark_read"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event\": \"\",\n  \"channel\": null,\n  \"recipient\": \"\",\n  \"title\": \"\",\n  \"message\": \"\",\n  \"status\": null,\n  \"sent_at\": \"\",\n  \"error\": \"\",\n  \"is_read\": false,\n  \"metadata\": null,\n  \"community\": 0,\n  \"customer\": 0,\n  \"user\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/notifications/mine/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/notifications/mine/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "notifications",
+                "mine"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/notifications/send/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/notifications/send/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "notifications",
+                "send"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event\": \"\",\n  \"channel\": null,\n  \"recipient\": \"\",\n  \"title\": \"\",\n  \"message\": \"\",\n  \"status\": null,\n  \"sent_at\": \"\",\n  \"error\": \"\",\n  \"is_read\": false,\n  \"metadata\": null,\n  \"community\": 0,\n  \"customer\": 0,\n  \"user\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Outages",
+      "item": [
+        {
+          "name": "GET /api/outages/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/outages/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "outages"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/outages/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/outages/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "outages"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cause\": \"\",\n  \"affected_area\": \"\",\n  \"started_at\": \"\",\n  \"expected_restoration\": \"\",\n  \"notify_customers\": false,\n  \"notes\": \"\",\n  \"asset\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/outages/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/outages/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "outages",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PUT /api/outages/{id}/",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/outages/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "outages",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cause\": \"\",\n  \"affected_area\": \"\",\n  \"started_at\": \"\",\n  \"expected_restoration\": \"\",\n  \"notify_customers\": false,\n  \"notes\": \"\",\n  \"asset\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /api/outages/{id}/",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/outages/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "outages",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cause\": \"\",\n  \"affected_area\": \"\",\n  \"started_at\": \"\",\n  \"expected_restoration\": \"\",\n  \"notify_customers\": false,\n  \"notes\": \"\",\n  \"asset\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/outages/{id}/",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/outages/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "outages",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/outages/{id}/restore/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/outages/:id/restore/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "outages",
+                ":id",
+                "restore"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cause\": \"\",\n  \"affected_area\": \"\",\n  \"started_at\": \"\",\n  \"expected_restoration\": \"\",\n  \"notify_customers\": false,\n  \"notes\": \"\",\n  \"asset\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payments",
+      "item": [
+        {
+          "name": "GET /api/payments/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/payments/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "payments"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/payments/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/payments/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "payments"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"\",\n  \"method\": null,\n  \"provider\": \"\",\n  \"provider_reference\": \"\",\n  \"payer_phone\": \"\",\n  \"payer_name\": \"\",\n  \"paid_at\": \"\",\n  \"notes\": \"\",\n  \"customer\": 0,\n  \"bill\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/payments/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/payments/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "payments",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/payments/{id}/confirm/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/payments/:id/confirm/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "payments",
+                ":id",
+                "confirm"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"\",\n  \"method\": null,\n  \"provider\": \"\",\n  \"provider_reference\": \"\",\n  \"payer_phone\": \"\",\n  \"payer_name\": \"\",\n  \"paid_at\": \"\",\n  \"notes\": \"\",\n  \"customer\": 0,\n  \"bill\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /api/payments/{id}/refund/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/payments/:id/refund/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "payments",
+                ":id",
+                "refund"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"\",\n  \"method\": null,\n  \"provider\": \"\",\n  \"provider_reference\": \"\",\n  \"payer_phone\": \"\",\n  \"payer_name\": \"\",\n  \"paid_at\": \"\",\n  \"notes\": \"\",\n  \"customer\": 0,\n  \"bill\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /api/payments/{id}/reverse/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/payments/:id/reverse/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "payments",
+                ":id",
+                "reverse"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"\",\n  \"method\": null,\n  \"provider\": \"\",\n  \"provider_reference\": \"\",\n  \"payer_phone\": \"\",\n  \"payer_name\": \"\",\n  \"paid_at\": \"\",\n  \"notes\": \"\",\n  \"customer\": 0,\n  \"bill\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /api/payments/initiate/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/payments/initiate/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "payments",
+                "initiate"
+              ]
+            },
+            "description": "Customer-portal online payment. Creates a PENDING payment; the gateway webhook (or manual confirm) settles it.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"\",\n  \"method\": null,\n  \"provider\": \"\",\n  \"provider_reference\": \"\",\n  \"payer_phone\": \"\",\n  \"payer_name\": \"\",\n  \"paid_at\": \"\",\n  \"notes\": \"\",\n  \"customer\": 0,\n  \"bill\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Plans",
+      "item": [
+        {
+          "name": "GET /api/plans/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/plans/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "plans"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/plans/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/plans/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "plans"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"description\": \"\",\n  \"monthly_price\": \"\",\n  \"max_customers\": 0,\n  \"max_staff\": 0,\n  \"features\": null,\n  \"is_active\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/plans/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/plans/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "plans",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PUT /api/plans/{id}/",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/plans/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "plans",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"description\": \"\",\n  \"monthly_price\": \"\",\n  \"max_customers\": 0,\n  \"max_staff\": 0,\n  \"features\": null,\n  \"is_active\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /api/plans/{id}/",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/plans/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "plans",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"description\": \"\",\n  \"monthly_price\": \"\",\n  \"max_customers\": 0,\n  \"max_staff\": 0,\n  \"features\": null,\n  \"is_active\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/plans/{id}/",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/plans/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "plans",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Properties",
+      "item": [
+        {
+          "name": "GET /api/properties/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/properties/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "properties"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/properties/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/properties/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "properties"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"\",\n  \"landmark\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"property_type\": null,\n  \"notes\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/properties/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/properties/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "properties",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PUT /api/properties/{id}/",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/properties/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "properties",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"\",\n  \"landmark\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"property_type\": null,\n  \"notes\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /api/properties/{id}/",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/properties/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "properties",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"\",\n  \"landmark\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"property_type\": null,\n  \"notes\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/properties/{id}/",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/properties/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "properties",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Readings",
+      "item": [
+        {
+          "name": "GET /api/readings/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/readings/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "readings"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/readings/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/readings/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "readings"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reading_value\": \"\",\n  \"reading_date\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"photo\": \"\",\n  \"photo_url\": null,\n  \"device_id\": \"\",\n  \"client_reading_id\": \"\",\n  \"source\": null,\n  \"ocr_detected_value\": \"\",\n  \"notes\": \"\",\n  \"meter\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/readings/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/readings/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "readings",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PUT /api/readings/{id}/",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/readings/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "readings",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reading_value\": \"\",\n  \"reading_date\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"photo\": \"\",\n  \"photo_url\": null,\n  \"device_id\": \"\",\n  \"client_reading_id\": \"\",\n  \"source\": null,\n  \"ocr_detected_value\": \"\",\n  \"notes\": \"\",\n  \"meter\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /api/readings/{id}/",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/readings/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "readings",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reading_value\": \"\",\n  \"reading_date\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"photo\": \"\",\n  \"photo_url\": null,\n  \"device_id\": \"\",\n  \"client_reading_id\": \"\",\n  \"source\": null,\n  \"ocr_detected_value\": \"\",\n  \"notes\": \"\",\n  \"meter\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/readings/{id}/",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/readings/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "readings",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/readings/{id}/reject/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/readings/:id/reject/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "readings",
+                ":id",
+                "reject"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reading_value\": \"\",\n  \"reading_date\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"photo\": \"\",\n  \"photo_url\": null,\n  \"device_id\": \"\",\n  \"client_reading_id\": \"\",\n  \"source\": null,\n  \"ocr_detected_value\": \"\",\n  \"notes\": \"\",\n  \"meter\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /api/readings/{id}/validate/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/readings/:id/validate/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "readings",
+                ":id",
+                "validate"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reading_value\": \"\",\n  \"reading_date\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"photo\": \"\",\n  \"photo_url\": null,\n  \"device_id\": \"\",\n  \"client_reading_id\": \"\",\n  \"source\": null,\n  \"ocr_detected_value\": \"\",\n  \"notes\": \"\",\n  \"meter\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/readings/anomalies/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/readings/anomalies/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "readings",
+                "anomalies"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/readings/bulk_sync/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/readings/bulk_sync/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "readings",
+                "bulk_sync"
+              ]
+            },
+            "description": "Offline-first sync. Each item carries a client UUID; replays are idempotent, conflicts are reported not silently merged.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reading_value\": \"\",\n  \"reading_date\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"photo\": \"\",\n  \"photo_url\": null,\n  \"device_id\": \"\",\n  \"client_reading_id\": \"\",\n  \"source\": null,\n  \"ocr_detected_value\": \"\",\n  \"notes\": \"\",\n  \"meter\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/readings/my_route/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/readings/my_route/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "readings",
+                "my_route"
+              ]
+            },
+            "description": "Meter reader's assigned households with their meters and last readings (mobile app / reader dashboard)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Receipts",
+      "item": [
+        {
+          "name": "GET /api/receipts/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/receipts/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "receipts"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /api/receipts/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/receipts/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "receipts",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Refunds",
+      "item": [
+        {
+          "name": "GET /api/refunds/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/refunds/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "refunds"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /api/refunds/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/refunds/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "refunds",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Routes",
+      "item": [
+        {
+          "name": "GET /api/routes/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/routes/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "routes"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/routes/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/routes/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "routes"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"schedule_note\": \"\",\n  \"is_active\": false,\n  \"reader\": 0,\n  \"customers\": null\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/routes/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/routes/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "routes",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PUT /api/routes/{id}/",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/routes/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "routes",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"schedule_note\": \"\",\n  \"is_active\": false,\n  \"reader\": 0,\n  \"customers\": null\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /api/routes/{id}/",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/routes/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "routes",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"schedule_note\": \"\",\n  \"is_active\": false,\n  \"reader\": 0,\n  \"customers\": null\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/routes/{id}/",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/routes/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "routes",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Schema",
+      "item": [
+        {
+          "name": "GET /api/schema/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/schema/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "schema"
+              ]
+            },
+            "description": "OpenApi3 schema for this API. Format can be selected via content negotiation.\n\n- YAML: application/vnd.oai.openapi\n- JSON: application/vnd.oai.openapi+json"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Service Charges",
+      "item": [
+        {
+          "name": "GET /api/service-charges/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/service-charges/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "service-charges"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/service-charges/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/service-charges/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "service-charges"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"charge_type\": null,\n  \"amount\": \"\",\n  \"applies_to\": null,\n  \"is_active\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/service-charges/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/service-charges/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "service-charges",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PUT /api/service-charges/{id}/",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/service-charges/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "service-charges",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"charge_type\": null,\n  \"amount\": \"\",\n  \"applies_to\": null,\n  \"is_active\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /api/service-charges/{id}/",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/service-charges/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "service-charges",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"charge_type\": null,\n  \"amount\": \"\",\n  \"applies_to\": null,\n  \"is_active\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/service-charges/{id}/",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/service-charges/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "service-charges",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tariffs",
+      "item": [
+        {
+          "name": "GET /api/tariffs/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/tariffs/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "tariffs"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/tariffs/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/tariffs/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "tariffs"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tiers\": null,\n  \"name\": \"\",\n  \"category\": null,\n  \"billing_mode\": null,\n  \"flat_rate\": \"\",\n  \"minimum_charge\": \"\",\n  \"is_active\": false,\n  \"effective_from\": \"\",\n  \"description\": \"\",\n  \"community\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/tariffs/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/tariffs/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "tariffs",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PUT /api/tariffs/{id}/",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/tariffs/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "tariffs",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tiers\": null,\n  \"name\": \"\",\n  \"category\": null,\n  \"billing_mode\": null,\n  \"flat_rate\": \"\",\n  \"minimum_charge\": \"\",\n  \"is_active\": false,\n  \"effective_from\": \"\",\n  \"description\": \"\",\n  \"community\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /api/tariffs/{id}/",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/tariffs/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "tariffs",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tiers\": null,\n  \"name\": \"\",\n  \"category\": null,\n  \"billing_mode\": null,\n  \"flat_rate\": \"\",\n  \"minimum_charge\": \"\",\n  \"is_active\": false,\n  \"effective_from\": \"\",\n  \"description\": \"\",\n  \"community\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/tariffs/{id}/",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/tariffs/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "tariffs",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /api/tariffs/{id}/simulate/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/tariffs/:id/simulate/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "tariffs",
+                ":id",
+                "simulate"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tickets",
+      "item": [
+        {
+          "name": "GET /api/tickets/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/tickets/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "tickets"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/tickets/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/tickets/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "tickets"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category\": null,\n  \"priority\": null,\n  \"status\": null,\n  \"title\": \"\",\n  \"description\": \"\",\n  \"location\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"resolution\": \"\",\n  \"customer\": 0,\n  \"meter\": 0,\n  \"bill\": 0,\n  \"assigned_to\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/tickets/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/tickets/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "tickets",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PUT /api/tickets/{id}/",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/tickets/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "tickets",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category\": null,\n  \"priority\": null,\n  \"status\": null,\n  \"title\": \"\",\n  \"description\": \"\",\n  \"location\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"resolution\": \"\",\n  \"customer\": 0,\n  \"meter\": 0,\n  \"bill\": 0,\n  \"assigned_to\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /api/tickets/{id}/",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/tickets/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "tickets",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category\": null,\n  \"priority\": null,\n  \"status\": null,\n  \"title\": \"\",\n  \"description\": \"\",\n  \"location\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"resolution\": \"\",\n  \"customer\": 0,\n  \"meter\": 0,\n  \"bill\": 0,\n  \"assigned_to\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/tickets/{id}/",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/tickets/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "tickets",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/tickets/{id}/add_comment/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/tickets/:id/add_comment/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "tickets",
+                ":id",
+                "add_comment"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category\": null,\n  \"priority\": null,\n  \"status\": null,\n  \"title\": \"\",\n  \"description\": \"\",\n  \"location\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"resolution\": \"\",\n  \"customer\": 0,\n  \"meter\": 0,\n  \"bill\": 0,\n  \"assigned_to\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /api/tickets/{id}/assign/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/tickets/:id/assign/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "tickets",
+                ":id",
+                "assign"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category\": null,\n  \"priority\": null,\n  \"status\": null,\n  \"title\": \"\",\n  \"description\": \"\",\n  \"location\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"resolution\": \"\",\n  \"customer\": 0,\n  \"meter\": 0,\n  \"bill\": 0,\n  \"assigned_to\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/tickets/{id}/comments/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/tickets/:id/comments/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "tickets",
+                ":id",
+                "comments"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/tickets/{id}/rate/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/tickets/:id/rate/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "tickets",
+                ":id",
+                "rate"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category\": null,\n  \"priority\": null,\n  \"status\": null,\n  \"title\": \"\",\n  \"description\": \"\",\n  \"location\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"resolution\": \"\",\n  \"customer\": 0,\n  \"meter\": 0,\n  \"bill\": 0,\n  \"assigned_to\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /api/tickets/{id}/transition/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/tickets/:id/transition/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "tickets",
+                ":id",
+                "transition"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category\": null,\n  \"priority\": null,\n  \"status\": null,\n  \"title\": \"\",\n  \"description\": \"\",\n  \"location\": \"\",\n  \"latitude\": \"\",\n  \"longitude\": \"\",\n  \"resolution\": \"\",\n  \"customer\": 0,\n  \"meter\": 0,\n  \"bill\": 0,\n  \"assigned_to\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Water Production",
+      "item": [
+        {
+          "name": "GET /api/water-production/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/water-production/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "water-production"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/water-production/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/water-production/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "water-production"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"\",\n  \"volume_m3\": \"\",\n  \"pump_hours\": \"\",\n  \"notes\": \"\",\n  \"asset\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/water-production/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/water-production/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "water-production",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PUT /api/water-production/{id}/",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/water-production/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "water-production",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"\",\n  \"volume_m3\": \"\",\n  \"pump_hours\": \"\",\n  \"notes\": \"\",\n  \"asset\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /api/water-production/{id}/",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/water-production/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "water-production",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"\",\n  \"volume_m3\": \"\",\n  \"pump_hours\": \"\",\n  \"notes\": \"\",\n  \"asset\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/water-production/{id}/",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/water-production/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "water-production",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Water Quality",
+      "item": [
+        {
+          "name": "GET /api/water-quality/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/water-quality/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "water-quality"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /api/water-quality/",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/water-quality/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "water-quality"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"testing_location\": \"\",\n  \"tested_on\": \"\",\n  \"laboratory\": \"\",\n  \"ph\": \"\",\n  \"turbidity_ntu\": \"\",\n  \"chlorine_mg_l\": \"\",\n  \"tds_mg_l\": \"\",\n  \"temperature_c\": \"\",\n  \"ecoli_cfu\": 0,\n  \"coliform_cfu\": 0,\n  \"result_summary\": \"\",\n  \"asset\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "GET /api/water-quality/{id}/",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/water-quality/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "water-quality",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PUT /api/water-quality/{id}/",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/water-quality/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "water-quality",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"testing_location\": \"\",\n  \"tested_on\": \"\",\n  \"laboratory\": \"\",\n  \"ph\": \"\",\n  \"turbidity_ntu\": \"\",\n  \"chlorine_mg_l\": \"\",\n  \"tds_mg_l\": \"\",\n  \"temperature_c\": \"\",\n  \"ecoli_cfu\": 0,\n  \"coliform_cfu\": 0,\n  \"result_summary\": \"\",\n  \"asset\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "PATCH /api/water-quality/{id}/",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/water-quality/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "water-quality",
+                ":id"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"testing_location\": \"\",\n  \"tested_on\": \"\",\n  \"laboratory\": \"\",\n  \"ph\": \"\",\n  \"turbidity_ntu\": \"\",\n  \"chlorine_mg_l\": \"\",\n  \"tds_mg_l\": \"\",\n  \"temperature_c\": \"\",\n  \"ecoli_cfu\": 0,\n  \"coliform_cfu\": 0,\n  \"result_summary\": \"\",\n  \"asset\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "DELETE /api/water-quality/{id}/",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/water-quality/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "water-quality",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    }
+  ]
+}
